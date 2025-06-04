@@ -1,0 +1,62 @@
+/* Fundo com imagem e gradiente */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: 
+      linear-gradient(rgb(0, 0, 0), rgb(240, 240, 240)),
+      url('https://images.unsplash.com/photo-1604014238252-2e7a163cb945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Quicksand", sans-serif;
+  }
+  
+  /* Container com sombra e transparência */
+  .login-container {
+    background: rgb(0, 0, 0);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(236, 236, 236, 0.785);
+    text-align: center;
+  }
+  
+  /* Formulário estilizado */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-form h2 {
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .login-form input {
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  /* Botão com gradiente e hover */
+  .login-form button {
+    padding: 12px;
+    margin-top: 10px;
+    background: linear-gradient(45deg, #000000, #ffffffc5);
+    border: none;
+    color: rgb(148, 148, 148);
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .login-form button:hover {
+    background: linear-gradient(45deg, #4d4d4d, #909090);
+  }
+  

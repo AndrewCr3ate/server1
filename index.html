@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+ <title>Login</title>
+ <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function verificarLogin(event) {
+      event.preventDefault();
+      const usuario = document.getElementById("usuario").value;
+      const senha = document.getElementById("senha").value;
+
+      if (usuario === "admin" && senha === "1234") {
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Usuário ou senha incorretos!");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="login-container">
+    <form class="login-form" onsubmit="verificarLogin(event)">
+      <h2>Bem-vindo</h2>
+      <input type="text" id="usuario" placeholder="Usuário" required>
+      <input type="password" id="senha" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+</body>
+</html>
