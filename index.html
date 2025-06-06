@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-   <meta charset="UTF-8">
- <title>Login</title>
- <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script>
-    function verificarLogin(event) {
+  <script> // não aguento mias fazer codigogofg0adofkaofafjd
+    async function verificarLogin(event) {
       event.preventDefault();
       const usuario = document.getElementById("usuario").value;
       const senha = document.getElementById("senha").value;
 
-      if (usuario === "admin" && senha === "1234") {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(senha);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+      console.log("Hash digitado:", hashHex);
+
+      const hashSenhaCorreta = "a7afff9ea9b4eec90b33b348239851c7378118b1f883a57fe376aaeb8b92454e";
+
+      if (usuario === "admin" && hashHex === hashSenhaCorreta) {
         window.location.href = "dashboard.html";
       } else {
         alert("Usuário ou senha incorretos!");
@@ -23,8 +30,8 @@
   </script>
 </head>
 <body>
-  <div class="login-container">
-    <form class="login-form" onsubmit="verificarLogin(event)">
+  <div class="sombradologinkk">
+    <form class="formulario" onsubmit="verificarLogin(event)">
       <h2>Bem-vindo</h2>
       <input type="text" id="usuario" placeholder="Usuário" required>
       <input type="password" id="senha" placeholder="Senha" required>

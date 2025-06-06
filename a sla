@@ -1,0 +1,41 @@
+#include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
+#include <ArduinoJson.h>
+
+// Wi-Fi
+const char* ssid = "ESP32";
+const char* password = "trabalho";
+
+ESP8266WebServer server(80);
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  Serial.print("Conectando-se ao Wi-Fi");
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nConectado ao Wi-Fi!");
+  Serial.println(WiFi.localIP());
+
+  // Endpoint para retornar os dados
+  server.on("/dados", []() {
+    StaticJsonDocument<200> json;
+    json["umidade"] = 68;     // simulado
+    json["temperatura"] = 24; // simulado
+    json["lcd"] = "Solo úmido";
+
+    String resposta;
+    serializeJson(json, resposta);
+    server.send(200, "application/json", resposta);
+  });
+
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();
+}
